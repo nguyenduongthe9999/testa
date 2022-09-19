@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 const route = require('./src/routes');
 const db = require('./src/config/db');
 const dotenv = require('dotenv')
-// dotenv.config()
+dotenv.config()
 
 // connect to db
 db.connect()

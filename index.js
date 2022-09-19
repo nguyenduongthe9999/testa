@@ -9,13 +9,13 @@ const port = process.env.PORT || 5000;
 const route = require('./src/routes');
 // const db = require('./src/config/db');
 const dotenv = require('dotenv')
+const cors = require('cors')
 dotenv.config()
-
-
+app.use(cors())
 mongoose
     .connect(process.env.MONGODB_URI, {
-        useNewUrlParser:true,
-        useUnifiedTopology:true
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     })
     .then(()=> {
         console.log('connect seccessfully')
@@ -24,10 +24,6 @@ mongoose
     .catch(()=> {
         console.log('connect fail')
     })
-
-
-// connect to db
-// db.connect()
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('combined'));
 app.engine('handlebars', handlebars());

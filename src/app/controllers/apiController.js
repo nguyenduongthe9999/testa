@@ -31,7 +31,7 @@ class apiController {
   }
 
   home(req,res) {
-    res.send('hello nodejs reactjs')
+    res.send('hello nodejs reactjs javascript')
   }
 
 }

@@ -4,14 +4,30 @@ const handlebars = require('express-handlebars').engine;
 const morgan = require('morgan');
 const exp = require('constants');
 const app = express();
+const mongoose = require('mongoose')
 const port = process.env.PORT || 5000;
 const route = require('./src/routes');
-const db = require('./src/config/db');
+// const db = require('./src/config/db');
 const dotenv = require('dotenv')
 dotenv.config()
 
+
+mongoose
+    .connect(process.env.MONGODB_URI, {
+        useNewUrlParser:true,
+        useUnifiedTopology:true
+    })
+    .then(()=> {
+        console.log('connect seccessfully')
+    })
+
+    .catch(()=> {
+        console.log('connect fail')
+    })
+
+
 // connect to db
-db.connect()
+// db.connect()
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('combined'));
 app.engine('handlebars', handlebars());
